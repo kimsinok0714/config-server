@@ -1,0 +1,78 @@
+
+server:
+  port: 8888
+
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git, native     
+  cloud:
+    config:
+      server:
+        # native:
+        #   search-locations: classpath:/config        
+        git:
+          uri: git@github.com:kimsinok0714/config-repo.git  # SSH  : Private Repository
+          ignore-local-ssh-settings: true   
+          private-key: |          
+            -----BEGIN RSA PRIVATE KEY-----
+            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
+            -----END RSA PRIVATE KEY-----
+          strict-host-key-checking: false
+
+        
+          
+      
+# git: Spring Cloud Config Server가 Git 저장소를 통해 설정 파일을 관리하도록 활성화합니다.
+# native: 로컬 파일 시스템에 있는 설정 파일을 사용할 수 있도록 합니다.
+#         이 설정은 주로 Git 저장소가 작동하지 않거나 개발 환경에서 로컬 파일을 사용할 때 유용합니다.

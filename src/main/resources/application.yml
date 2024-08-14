@@ -1,3 +1,4 @@
+# Config Server 설정 파일 : Git 사용
 
 server:
   port: 8888
@@ -11,11 +12,16 @@ spring:
   cloud:
     config:
       server:
+        encrypt:
+          enabled: false
         # native:
         #   search-locations: classpath:/config        
         git:
           uri: git@github.com:kimsinok0714/config-repo.git  # SSH  : Private Repository
           ignore-local-ssh-settings: true   
+          strict-host-key-checking: false
+          host-key: AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+          host-key-algorithm: ssh-rsa
           private-key: |          
             -----BEGIN RSA PRIVATE KEY-----
             MIIJKQIBAAKCAgEAvcLmsBCoot7bBlHKdZfvTMdgzQGIzy5yV4QMjZa52fTRbcAI
@@ -68,11 +74,21 @@ spring:
             w/5XMu1pujkpJGAQfX2kSEknUVMRtyxr5kFZpP88emQHX+aCQLHlGReljzi6Fec9
             r5+HZB6MWKaq7BCbJFByprQB2Ena1c9hmLjgeswSEXYdCPKNk1sQ0prP/3Rg
             -----END RSA PRIVATE KEY-----
-          strict-host-key-checking: false
-
-        
           
-      
+          passphrase: # 비대칭키 생성 시 입력한 값
+
+
+
+
+# <<http://localhost:8888/encrypt>> POST 방식으로 요청
+encrypt:
+  key: my-secret  # 사용할 암호화
+
+
+
 # git: Spring Cloud Config Server가 Git 저장소를 통해 설정 파일을 관리하도록 활성화합니다.
 # native: 로컬 파일 시스템에 있는 설정 파일을 사용할 수 있도록 합니다.
 #         이 설정은 주로 Git 저장소가 작동하지 않거나 개발 환경에서 로컬 파일을 사용할 때 유용합니다.
+
+# hostKey, hostKeyAlgorithmPermalink
+# $ ssh-keyscan -t rsa<<암호화 알고리즘>> github.com

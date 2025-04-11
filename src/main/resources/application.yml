@@ -85,8 +85,6 @@ spring:
           passphrase: # 비대칭키 생성 시 입력한 값
 
 
-
-
 # <<http://localhost:8888/encrypt>> POST 방식으로 요청
 encrypt:
   key: my-secret  # 사용할 암호화
